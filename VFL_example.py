@@ -5,7 +5,7 @@ import sys
 
 # import the module from google drive
 sys.path.insert(0,'path/')
-import src
+import src # downloaded from PyVertical
 import torch
 from torchvision import datasets, transforms
 from torch import nn, optim
