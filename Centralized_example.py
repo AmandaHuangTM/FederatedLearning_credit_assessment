@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
 
 import numpy as np
 import pandas as pd
@@ -19,9 +14,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, classification_report
 
 
-# In[2]:
-
-
 df = pd.read_csv("data456.csv")
 df.head()
 
@@ -31,23 +23,10 @@ df.head()
 
 df = df.dropna()
 
-
-# In[4]:
-
-
-# df = df.astype(np.float64)
-# df["Final_Status (Y/N)"].astype(int)
 df.dtypes
-
-
-# In[5]:
-
 
 df = pd.get_dummies(df)
 df.head()
-
-
-# In[6]:
 
 
 cols = df.columns.tolist()
@@ -57,79 +36,31 @@ df = df[cols]
 df.head() 
 
 
-# In[7]:
-
-
 df.shape
 
-
-# In[8]:
-
-
-# df['Class_att'] = df['Class_att'].astype('category')
-# encode_map = {
-#     'Abnormal': 1,
-#     'Normal': 0
-# }
-
-# df['Class_att'].replace(encode_map, inplace=True)
-
-
-# In[9]:
-
-
 sns.countplot(x = 'Indicators', data=df)
-
-
-# In[10]:
 
 
 X = df.iloc[:, 0:-1]
 y = df.iloc[:, -1]
 
 
-# In[11]:
-
-
 print(X.shape, y.shape)
-
-
-# In[12]:
-
 
 np.any(np.isnan(y))
 
 
-# In[13]:
-
-
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
-
-
-# In[14]:
-
 
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.fit_transform(X_test)
 
-
-# In[15]:
-
-
 print(X_train.shape, X_test.shape)
-
-
-# In[16]:
-
 
 EPOCHS = 100
 BATCH_SIZE = 64
 LEARNING_RATE = 0.001
-
-
-# In[17]:
-
 
 ## train data
 class trainData(Dataset):
@@ -162,15 +93,8 @@ class testData(Dataset):
 
 test_data = testData(torch.FloatTensor(X_test))
 
-
-# In[18]:
-
-
 train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=True)
 test_loader = DataLoader(dataset=test_data, batch_size=1) # may need increase later
-
-
-# In[19]:
 
 
 class binaryClassification(nn.Module):
@@ -196,27 +120,15 @@ class binaryClassification(nn.Module):
         
         return x
 
-
-# In[20]:
-
-
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print(device)
 ###############
-
-
-# In[21]:
-
 
 model = binaryClassification()
 model.to(device)
 print(model)
 criterion = nn.BCEWithLogitsLoss()
 optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE)
-
-
-# In[22]:
-
 
 def binary_acc(y_pred, y_test):
     y_pred_tag = torch.round(torch.sigmoid(y_pred))
@@ -226,10 +138,6 @@ def binary_acc(y_pred, y_test):
     acc = torch.round(acc * 100)
     
     return acc
-
-
-# In[23]:
-
 
 model.train()
 e_loss = []
@@ -267,39 +175,20 @@ n_list = np.arange(1, 501).tolist()
 n_list = pd.Series(n_list)
 time_list = pd.Series(timelist)
 
-
-# In[25]:
-
-
 time_list.corr(n_list)
-
-
-# In[26]:
 
 
 plt.plot(e_loss)
 
 
-# In[27]:
-
-
 plt.plot(e_acc)
-
-
-# In[28]:
 
 
 plt.plot(timelist)
 
 
-# In[33]:
-
-
 import statistics
 statistics.mean(timelist)
-
-
-# In[29]:
 
 
 y_pred_list = []
@@ -315,20 +204,8 @@ with torch.no_grad():
 y_pred_list = [a.squeeze().tolist() for a in y_pred_list]
 
 
-# In[30]:
-
-
 confusion_matrix(y_test, y_pred_list)
 
 
-# In[31]:
-
-
 print(classification_report(y_test, y_pred_list))
-
-
-# In[31]:
-
-
-
 
