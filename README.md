@@ -1,4 +1,4 @@
-# Vertical Federated Learning on Credit Assessment Data
+# Federated Learning on Credit Assessment Data
 
 #### Capstone Project of Risk Management and Business Intelligence in HKUST
 
@@ -11,7 +11,6 @@ This project aims to create tailored credit assessment model for MSMEs while pro
 Federated Learning is adopted to protect data privacy. 
 Deep Learning approach is used for constructing tailored credit assessment method for MSMEs.
 
-In this section, we mainly focus on Vertical Federated Learning.
 
 ## Packages
 1. **PySyft** - Federated Learning structure
