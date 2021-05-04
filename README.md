@@ -8,20 +8,26 @@ Currently, there are serveral credit assessment methods applied in industries. H
 This project aims to create tailored credit assessment model for MSMEs while protecting privacy.
 
 ## Methodology
-Federated Learning is adopted to protect data privacy. 
+Federated Learning is adopted to protect data privacy.  
 Deep Learning approach is used for constructing tailored credit assessment method for MSMEs.
 
 
 ## Packages
-1. **PySyft** - Federated Learning structure
-2. **PyVertical** - Vertical Federated Learning framework
+1. **PySyft** - Federated Learning structure, used in HFL and VFL
+2. **PyVertical** - Vertical Federated Learning framework, used in VFL
 3. **PyTorch** - Deep Learning
 
-2 scenarios are set up to examine the effiency of VFL
-Additional 2 msme dataset version are also tested for reference
+Majorly, 2 scenarios are set up to examine the effiency of VFL. They are based on Dataset_A and Dataset_B respectively.
+Additional msme dataset version are also tested for investigating the application on MSMEs.  
+
 ## Uploaded Files
-- **VFL_example.py**: main structure of our experiements
-- **VFL_DatasetA_final.ipynb**: standard version
-- **VFL_DatasetB_final.ipynb**: add more feature columns
-- **VFL_msmeA_final.ipynb**: only contains MSME data, same feature columns with DatasetA
-- **VFL_msmeB_final.ipynb**: only contains MSME data, same feature columns with DatasetB
+- **Centralized_example.py**: main structure of centralized model
+- **HFL_example.py**: main structure of Horizontal Federated Learning model
+- **VFL_example.py**: main structure of Vertical Federated Learning model
+### Folders
+- **C**: centralized model files on each dataset with output (100 epoches)
+  - **200**: centralized model with 200 epoches
+- **HFL**: HFL model files on each dataset with output (100 epoches)
+  - **200**: HFL model with 200 epoches
+- **VFL**: VFL model files on each dataset with output (100 epoches), and one additional PySyft 03 version file
+  - **200**: VFL model with 200 epoches
